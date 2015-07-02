@@ -21,6 +21,7 @@ namespace DemoForPark.Controllers
         }
 
 
+       // [HttpPost]
         public ActionResult Upload(HttpPostedFileBase Filedata)
         {
             // 如果没有上传文件
@@ -33,9 +34,9 @@ namespace DemoForPark.Controllers
 
             // 保存到 ~/photos 文件夹中，名称不变
             string filename = System.IO.Path.GetFileName(Filedata.FileName);
-            string virtualPath =
-                string.Format("~/photos/{0}", filename);
-            // 文件系统不能使用虚拟路径
+            string virtualPath = string.Format("~/photos/{0}", filename);
+
+            // 转换成绝对路径
             string path = this.Server.MapPath(virtualPath);
 
             Filedata.SaveAs(path);
